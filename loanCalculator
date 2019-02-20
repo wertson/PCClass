@@ -1,0 +1,43 @@
+#Set the variables.
+lv_interestRate = 0.00
+lv_compoundInterest = 0
+lv_totalAmount = 0.00
+lv_principal = 0.00
+lv_lengthOfLoan = 0
+lv_interestRateDec = 0.00
+lv_userInput:str = ""
+lv_validData:bool = False
+lv_badData:bool = False
+
+#Get User's input, first ask how much of a loan to be taken and how many years to pay the loan back.
+
+lv_userInput = input("Loan amount: ")
+lv_userInput = lv_userInput.replace("$", "").replace(",","").replace(" ", "")
+lv_validData = lv_userInput.find(".") == lv_userInput.rfind(".") and lv_userInput.replace(".", "").isnumeric()
+if lv_validData:
+	lv_principal = float(lv_userInput)
+else:
+	lv_badData = True
+
+if not lv_badData:
+	lv_interestRate = float(input("Enter interest rate: "))
+
+	if not lv_badData:
+		lv_compoundInterest = float(input("Enter how many times the loan compounds per year: "))
+	
+		lv_lengthOfLoan = int(input("Years to pay loan back: "))
+
+if not lv_badData:
+# Convert the interest rate input.
+	lv_interestRateDec = lv_interestRate / 100
+
+# Calculate the following equation: A = P (1 + r/n)^(nt)
+	lv_totalAmount = lv_principal * (1 + (lv_interestRateDec / lv_compoundInterest)) ** (lv_compoundInterest * lv_lengthOfLoan)
+
+#Display output
+
+print ("                                 The loan Amount is: ", format(lv_principal, "12.2f"))
+print ("                               The interest rate is: ", format(lv_interestRateDec, "12.2%"))
+print ("The number of times the interest compounds per year: ", format(lv_compoundInterest, "12"))
+print ("                             Years to pay back loan: ", format(lv_lengthOfLoan, "12"))
+print ("    The future value of the loan including interest: ", format(lv_totalAmount, "12.2f"))
