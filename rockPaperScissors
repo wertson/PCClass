@@ -1,0 +1,55 @@
+#import the random library
+import random
+
+#ask the user to give their choice / variable input
+playerGuess = input("Rock, paper, or scissors? ")
+
+#make all letters lower case
+playerGuess = playerGuess.lower()
+
+#create a list of the choices
+choices = ["rock", "paper", "scissors"]
+
+#check if user enter a valid choice
+if playerGuess == choices[0] or playerGuess == choices[1] or playerGuess == choices[2]:
+    print("Your guess is "+ playerGuess + ".")
+else:
+    print("You did not enter a valid input.")
+
+#compute a randm number between 0 and 2
+randomNumber = random.randint(0, 2)
+
+#create an empty string for the computer's guess
+computerGuess = ""
+
+#check the random number and assign a choice to computet
+if randomNumber == 0:
+    computerGuess = choices[0]
+elif randomNumber == 1:
+    computerGuess = choices[1]
+else:
+    computerGuess = choices[2]
+
+#determine if the user or the computer wins the game.
+print("The computer guess is: " + computerGuess + ".")
+
+if playerGuess == "rock" and computerGuess == "paper":
+    print("The computer wins!!!")
+
+elif playerGuess == "rock" and computerGuess == "scissors":
+    print("User wins!!!")
+
+elif playerGuess == "paper" and computerGuess == "scissors":
+    print("The computer wins!!!")
+    
+elif playerGuess == "paper" and computerGuess == "rock":
+    print("User wins!!!")
+    
+elif playerGuess == "scissors" and computerGuess == "rock":
+    print("The computer wins!!!")
+    
+elif playerGuess == "scissors" and computerGuess == "paper":
+    print("User wins!!!")
+
+elif playerGuess == computerGuess:
+    print("It's a draw!!!")
